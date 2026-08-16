@@ -5,7 +5,7 @@ import { testimonialsData, testimonialStatsData } from "@/Constants/data";
 
 const PatientTestimonials = () => {
   return (
-    <WrapperComponent className="relative overflow-hidden bg-white pt-4 pb-14 md:pt-6 md:pb-17">
+    <WrapperComponent className="relative overflow-hidden bg-white pt-4 pb-14 md:pt-11 md:pb-22 ">
       <div className="relative mx-auto max-w-253.75">
         <div className="mx-auto max-w-137.5 text-center">
           <h2 className="text-[29px] leading-[1.28] font-bold text-neutral-900 md:text-[32px]">

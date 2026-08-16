@@ -5,7 +5,7 @@ import { Link } from "react-router";
 
 const HealNetStory = () => {
   return (
-    <WrapperComponent className="bg-white pt-8 pb-12 md:pt-10 md:pb-16">
+    <WrapperComponent className="bg-white pt-8 pb-12 md:pt-18 md:pb-24">
       <div className="mx-auto  max-w-263 rounded-3xl border border-primary-300 bg-white px-6 py-10 md:px-12 lg:px-14 lg:py-12">
         <h2 className="text-center text-[28px] leading-tight font-bold text-neutral-900 md:text-[30px]">
           <span className="text-primary-700">HealNet's</span>{" "}
