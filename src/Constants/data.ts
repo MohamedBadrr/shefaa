@@ -1,10 +1,14 @@
-  import type { Testimonial, TestimonialStat } from "@/@types";
+  import type { Department, Testimonial, TestimonialStat } from "@/@types";
 import {
+  Bone,
   CalendarDays,
   ClipboardPlus,
+  Eye,
   FileText,
+  HeartPulse,
   MessageSquareText,
   Pill,
+  Stethoscope,
 } from "lucide-react";
   export const TopServicesData = [
     {
@@ -99,5 +103,32 @@ export const testimonialStatsData: TestimonialStat[] = [
     value: 200,
     suffix: "+",
     label: "Top Specialists",
+  },
+];
+
+export const departmentsData: Department[] = [
+  {
+    name: "Internal Medicine",
+    description:
+      "Comprehensive care for adults, from routine checkups to long-term health management.",
+    Icon: Stethoscope,
+  },
+  {
+    name: "Ophthalmology",
+    description:
+      "Specialized eye care for vision health, diagnosis, treatment, and follow-up.",
+    Icon: Eye,
+  },
+  {
+    name: "Cardiology",
+    description:
+      "Heart-focused consultations for prevention, monitoring, and personalized care plans.",
+    Icon: HeartPulse,
+  },
+  {
+    name: "Orthopedics",
+    description:
+      "Bone, joint, and movement care designed to help you recover and stay active.",
+    Icon: Bone,
   },
 ];

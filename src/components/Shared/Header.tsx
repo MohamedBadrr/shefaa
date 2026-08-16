@@ -7,7 +7,7 @@ import { useState } from "react";
 const Header = () => {
   const links = [
     { link: "Home", to: "/" },
-    { link: "Find Doctors", to: "/find-doctors" },
+    { link: "Find Doctors", to: "/doctors" },
     { link: "About us", to: "/about-us" },
     { link: "Contact us", to: "/contact-us" },
   ];
