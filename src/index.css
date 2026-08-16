@@ -189,7 +189,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-linear-to-b from-primary/2 via-primary/2 to-primary/3 text-foreground;
   }
   html {
     @apply font-sans;

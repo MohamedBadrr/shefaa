@@ -2,7 +2,6 @@ import logo from "@/assets/logo.png";
 import facebook from "@/assets/facebook.png";
 import instagram from "@/assets/instagram.png";
 import youtube from "@/assets/youtube.png";
-import { Link } from "react-router";
 const Footer = () => {
   const footerLinks = [
     {
@@ -45,7 +44,7 @@ const Footer = () => {
             Shefaa
           </h1>
 
-          <span className="text-neutral-500 text-sm w-full md:w-[60%] mt-5">
+          <span className="text-neutral-500 text-sm w-full md:w-[65%] mt-5">
             Experience personalized medical care from the comfort of your home.
           </span>
         </div>
