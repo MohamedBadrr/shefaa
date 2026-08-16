@@ -1,13 +1,28 @@
-  import type { Department, Testimonial, TestimonialStat } from "@/@types";
+  import type {
+  AboutStat,
+  AboutValue,
+  ContactFormValues,
+  ContactInfoItem,
+  Department,
+  Testimonial,
+  TestimonialStat,
+} from "@/@types";
 import {
+  Award,
   Bone,
   CalendarDays,
   ClipboardPlus,
+  Clock3,
   Eye,
   FileText,
+  HeartHandshake,
   HeartPulse,
+  Mail,
+  MapPin,
   MessageSquareText,
   Pill,
+  Phone,
+  ShieldCheck,
   Stethoscope,
 } from "lucide-react";
   export const TopServicesData = [
@@ -132,3 +147,74 @@ export const departmentsData: Department[] = [
     Icon: Bone,
   },
 ];
+
+export const aboutStatsData: AboutStat[] = [
+  {
+    value: "24/7",
+    label: "Digital care access",
+  },
+  {
+    value: "10k+",
+    label: "Successful consultations",
+  },
+  {
+    value: "98%",
+    label: "Patient satisfaction",
+  },
+];
+
+export const aboutValuesData: AboutValue[] = [
+  {
+    title: "Trusted Specialists",
+    description:
+      "We connect patients with licensed doctors across focused medical departments.",
+    Icon: Award,
+  },
+  {
+    title: "Patient-first Care",
+    description:
+      "Every visit, prescription, and follow-up is designed around comfort and clarity.",
+    Icon: HeartHandshake,
+  },
+  {
+    title: "Secure Experience",
+    description:
+      "Your medical journey stays private, protected, and simple from start to finish.",
+    Icon: ShieldCheck,
+  },
+  {
+    title: "Fast Support",
+    description:
+      "Our team keeps help close whenever you need guidance with your healthcare.",
+    Icon: Clock3,
+  },
+];
+
+export const contactInfoData: ContactInfoItem[] = [
+  {
+    title: "Call us",
+    value: "+20 100 000 0000",
+    description: "Speak with our support team",
+    Icon: Phone,
+  },
+  {
+    title: "Email us",
+    value: "support@shefaa.com",
+    description: "Send us your question anytime",
+    Icon: Mail,
+  },
+  {
+    title: "Visit us",
+    value: "Cairo, Egypt",
+    description: "Digital care with local support",
+    Icon: MapPin,
+  },
+];
+
+export const contactFormInitialValues: ContactFormValues = {
+  fullName: "",
+  email: "",
+  phone: "",
+  subject: "",
+  message: "",
+};
