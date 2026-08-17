@@ -38,6 +38,25 @@ export type LoginFormValues = {
   password: string;
 };
 
+export type PatientRegisterFormValues = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  phone: string;
+  age: number | "";
+  address: string;
+};
+
+export type DoctorRegisterFormValues = PatientRegisterFormValues & {
+  departmentId: string;
+  degree: string;
+  fee: number | "";
+  yearsOfExperience: number | "";
+  description: string;
+};
+
 export type Testimonial = {
   name: string;
   quote: string;

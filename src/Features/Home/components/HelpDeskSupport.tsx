@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import WrapperComponent from "@/components/ui/WrapperComponent";
-import { CircleArrowRight, Mail, User } from "lucide-react";
+import { Mail, User } from "lucide-react";
 import { Form, Formik } from "formik";
 import InputField from "@/components/fields/InputField";
 import * as Yup from "yup";
@@ -57,11 +57,6 @@ const HelpDeskSupport = () => {
               className=" rounded-lg bg-primary-500 px-5 text-[18px] font-bold shadow-none hover:bg-primary-600"
             >
               Contact us
-              <CircleArrowRight
-                aria-hidden="true"
-                size={17}
-                className="fill-white text-primary-500"
-              />
             </Button>
           </Form>
         </Formik>

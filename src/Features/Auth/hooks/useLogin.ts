@@ -11,7 +11,7 @@ export const useLogin = ()=>  {
     mutationFn: login,
     onSuccess: (user) => {
       setAuthUser(user);
-      toast.success("Sign in Succeffully");
+      toast.success("Signned in Successfully");
 
       if (user.role === "admin") {
         navigate("/about-us");

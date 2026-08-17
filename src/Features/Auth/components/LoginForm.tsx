@@ -5,11 +5,7 @@ import { Form, Formik } from "formik";
 import { LockKeyhole, LogIn, Mail } from "lucide-react";
 import { loginValidationSchema } from "../validations/loginValidation";
 import { useLogin } from "../hooks/useLogin";
-
-const initialValues: LoginFormValues = {
-  email: "",
-  password: "",
-};
+import { loginInitialValues } from "../constants/authInitialValues";
 
 const LoginForm = () => {
   const { mutate: loginMutation, isPending: loginPending } = useLogin();
@@ -23,7 +19,7 @@ const LoginForm = () => {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={loginInitialValues}
       validationSchema={loginValidationSchema}
       onSubmit={handleSubmit}
     >

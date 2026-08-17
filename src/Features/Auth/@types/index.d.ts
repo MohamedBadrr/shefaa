@@ -1,6 +1,16 @@
 type UserRole = "admin" | "doctor" | "patient";
 type DoctorApprovalStatus = "pending" | "approved" | "rejected";
 type AuthUser =  Doctor | Patient | Admin;
+export type DepartmentOption = {
+  id: string;
+  name: string;
+};
+export type DepartmentType = {
+  id: string;
+  name: string;
+  description: string;
+  is_active: boolean;
+};
 type BaseUser = {
   id: string;
   email: string;
