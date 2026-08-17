@@ -218,3 +218,9 @@ export const contactFormInitialValues: ContactFormValues = {
   subject: "",
   message: "",
 };
+  export const links = [
+    { link: "Home", to: "/" },
+    { link: "Find Doctors", to: "/doctors" },
+    { link: "About us", to: "/about-us" },
+    { link: "Contact us", to: "/contact-us" },
+  ];

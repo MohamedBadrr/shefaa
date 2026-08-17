@@ -4,8 +4,13 @@ import MainLayout from "./Layouts/MainLayout";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import Doctors from "./pages/Doctors";
+import Login from "./pages/Login";
 
 export const router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <Login />,
+  },
   {
     path: "/",
     element: <MainLayout />,

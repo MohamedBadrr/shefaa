@@ -1,17 +1,17 @@
 import logo from "@/assets/logo.png";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { Button } from "../ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useAuthStore } from "@/store/AuthStore";
+import { useLogout } from "@/Features/Auth/hooks/useLogout";
+import { links } from "@/Constants/data";
 
 const Header = () => {
-  const links = [
-    { link: "Home", to: "/" },
-    { link: "Find Doctors", to: "/doctors" },
-    { link: "About us", to: "/about-us" },
-    { link: "Contact us", to: "/contact-us" },
-  ];
   const [openMenu, setOpenMenu] = useState(false);
+  const { isAuthenticated } = useAuthStore();
+  const { isPending: isPendingLogout, mutate: mutateLogout } = useLogout();
+
   return (
     <nav className="">
       <div className="py-5 px-6 md:py-8 md:px-10 lg:py-8 lg:px-25 flex items-center md:justify-between w-full">
@@ -41,9 +41,24 @@ const Header = () => {
         </div>
         {/* join us */}
         <div className="hidden md:block">
-          <Button variant={"gradient"} size={"lg"}>
-            Join Us
-          </Button>
+          {!isAuthenticated ? (
+            <Link to="/login">
+              <Button variant={"gradient"} size={"lg"}>
+                Join Us
+              </Button>
+            </Link>
+          ) : (
+            <Button
+              onClick={() => mutateLogout()}
+              variant={"gradient"}
+              className={"w-full!"}
+              loading={isPendingLogout}
+              disabled={isPendingLogout}
+              size={"lg"}
+            >
+              Logout
+            </Button>
+          )}
         </div>
 
         {!openMenu ? (
@@ -82,9 +97,24 @@ const Header = () => {
             </NavLink>
           ))}
           <div className="w-full">
-            <Button variant={"gradient"} className={"w-full!"} size={"lg"}>
-              Join Us
-            </Button>
+            {!isAuthenticated ? (
+              <Link to="/login" onClick={() => setOpenMenu(false)}>
+                <Button variant={"gradient"} className={"w-full!"} size={"lg"}>
+                  Join Usdas
+                </Button>
+              </Link>
+            ) : (
+              <Button
+                onClick={() => mutateLogout()}
+                variant={"gradient"}
+                className={"w-full!"}
+                loading={isPendingLogout}
+                disabled={isPendingLogout}
+                size={"lg"}
+              >
+                Logout
+              </Button>
+            )}
           </div>
         </div>
       )}

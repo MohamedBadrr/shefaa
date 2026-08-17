@@ -33,6 +33,11 @@ export type ContactFormValues = {
   message: string;
 };
 
+export type LoginFormValues = {
+  email: string;
+  password: string;
+};
+
 export type Testimonial = {
   name: string;
   quote: string;
