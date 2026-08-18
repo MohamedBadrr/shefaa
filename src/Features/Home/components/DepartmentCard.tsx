@@ -1,7 +1,18 @@
-import type { Department } from "@/@types";
+import type { DepartmentType } from "@/Features/Auth/@types";
 import { Button } from "@/components/ui/button";
+import { Bone, Eye, HeartPulse, Stethoscope } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const DepartmentCard = ({ name, description, Icon }: Department) => {
+const departmentIcons: Record<string, LucideIcon> = {
+  Cardiology: HeartPulse,
+  Dermatology: Eye,
+  Orthopedics: Bone,
+  Pediatrics: Stethoscope,
+};
+
+const DepartmentCard = ({ name, description }: DepartmentType) => {
+  const Icon = departmentIcons[name] ?? Stethoscope;
+
   return (
     <article className="group cursor-pointer flex min-h-54 flex-col justify-between rounded-lg border border-primary-200 bg-white p-6 shadow-[8px_18px_30px_rgba(0,164,244,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-primary-400 hover:shadow-[10px_22px_34px_rgba(0,164,244,0.14)]">
       <div>
@@ -15,7 +26,7 @@ const DepartmentCard = ({ name, description, Icon }: Department) => {
           {name}
         </h3>
         <p className="mt-3 text-[13px] leading-[1.65] font-medium text-neutral-500">
-          {description}
+          {description || "Specialized care from trusted healthcare professionals."}
         </p>
       </div>
 

@@ -1,8 +1,10 @@
-import { departmentsData } from "@/Constants/data";
 import WrapperComponent from "@/components/ui/WrapperComponent";
+import { useDepartments } from "@/Features/Auth/hooks/useDepartments";
 import DepartmentCard from "./DepartmentCard";
 
 const MedicalDepartments = () => {
+  const { data: departments = [], isLoading, isError } = useDepartments();
+
   return (
     <WrapperComponent className="bg-white py-14 md:py-18">
       <div className="mx-auto max-w-253.75">
@@ -19,11 +21,36 @@ const MedicalDepartments = () => {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {departmentsData.map((department) => (
-            <DepartmentCard key={department.name} {...department} />
-          ))}
-        </div>
+        {isLoading && (
+          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {Array.from({ length: 4 }).map((_, index) => (
+              <div
+                key={index}
+                className="h-54 animate-pulse rounded-lg border border-primary-100 bg-primary-50"
+              />
+            ))}
+          </div>
+        )}
+
+        {isError && (
+          <p className="mt-10 text-center text-sm font-semibold text-red-500">
+            We could not load the departments right now. Please try again later.
+          </p>
+        )}
+
+        {!isLoading && !isError && departments.length === 0 && (
+          <p className="mt-10 text-center text-sm font-semibold text-neutral-500">
+            No active departments are available yet.
+          </p>
+        )}
+
+        {!isLoading && !isError && departments.length > 0 && (
+          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {departments.map((department) => (
+              <DepartmentCard key={department.id} {...department} />
+            ))}
+          </div>
+        )}
       </div>
     </WrapperComponent>
   );
