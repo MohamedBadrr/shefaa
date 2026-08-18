@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from "react-router";
+import { Navigate, Outlet, ScrollRestoration } from "react-router";
 import { useAuthStore } from "@/store/AuthStore";
 
 const ProtectedLayout = () => {
@@ -7,7 +7,12 @@ const ProtectedLayout = () => {
     return <Navigate to="/login" replace />;
   }
 
-  return <Outlet />;
+  return (
+    <>
+      <ScrollRestoration />
+      <Outlet />{" "}
+    </>
+  );
 };
 
 export default ProtectedLayout;

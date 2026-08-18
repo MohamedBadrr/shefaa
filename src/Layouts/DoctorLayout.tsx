@@ -1,6 +1,6 @@
 import Footer from "@/components/Shared/Footer";
 import Header from "@/components/Shared/Header";
-import { Navigate, Outlet, useLocation } from "react-router";
+import { Navigate, Outlet, ScrollRestoration, useLocation } from "react-router";
 import { useAuthStore } from "@/store/AuthStore";
 
 const DoctorLayout = () => {
@@ -47,6 +47,7 @@ const DoctorLayout = () => {
       <Header />
       <Outlet />
       <Footer />
+      <ScrollRestoration />
     </>
   );
 };

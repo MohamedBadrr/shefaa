@@ -1,7 +1,7 @@
 import Footer from "@/components/Shared/Footer";
 import Header from "@/components/Shared/Header";
 import { useAuthStore } from "@/store/AuthStore";
-import { Navigate, Outlet } from "react-router";
+import { Navigate, Outlet, ScrollRestoration } from "react-router";
 
 const PatientLayout = () => {
   const { user } = useAuthStore();
@@ -13,6 +13,7 @@ const PatientLayout = () => {
       <Header />
       <Outlet />
       <Footer />
+      <ScrollRestoration />
     </>
   );
 };

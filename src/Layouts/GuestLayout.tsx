@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from "react-router";
+import { Navigate, Outlet, ScrollRestoration } from "react-router";
 import { useAuthStore } from "@/store/AuthStore";
 
 const getAuthenticatedPath = (
@@ -24,7 +24,12 @@ const GuestLayout = () => {
     );
   }
 
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+      <ScrollRestoration />
+    </>
+  );
 };
 
 export default GuestLayout;

@@ -89,6 +89,12 @@ export type DoctorSchedule = {
   timeSlot: string;
 };
 
+export type DoctorAvailableSlot = {
+  id: string;
+  appointmentDate: string;
+  timeSlot: string;
+};
+
 export type DoctorReview = {
   id: string;
   appointmentId: string;

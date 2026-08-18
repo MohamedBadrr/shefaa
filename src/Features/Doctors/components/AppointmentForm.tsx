@@ -2,7 +2,7 @@ import SelectField from "@/components/fields/SelectField";
 import { Button } from "@/components/ui/button";
 import { Form, Formik, useFormikContext } from "formik";
 import type {
-  DoctorSchedule,
+  DoctorAvailableSlot,
   PatientAppointmentValues,
   PublicDoctor,
 } from "@/Features/Auth/@types";
@@ -82,7 +82,7 @@ const AppointmentForm = ({ doctor }: AppointmentFormProps) => {
   );
 };
 
-const ScheduleFields = ({ schedules }: { schedules: DoctorSchedule[] }) => {
+const ScheduleFields = ({ schedules }: { schedules: DoctorAvailableSlot[] }) => {
   const { values, setFieldValue } =
     useFormikContext<PatientAppointmentValues>();
   const dateOptions = getAvailableDateOptions(schedules);
