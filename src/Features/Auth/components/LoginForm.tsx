@@ -2,7 +2,7 @@ import type { LoginFormValues } from "@/@types";
 import InputField from "@/components/fields/InputField";
 import { Button } from "@/components/ui/button";
 import { Form, Formik } from "formik";
-import { LockKeyhole, LogIn, Mail } from "lucide-react";
+import { LockKeyhole, Mail } from "lucide-react";
 import { loginValidationSchema } from "../validations/loginValidation";
 import { useLogin } from "../hooks/useLogin";
 import { loginInitialValues } from "../constants/authInitialValues";
@@ -52,7 +52,6 @@ const LoginForm = () => {
           className=" w-full"
         >
           Sign in to Shefaa
-          <LogIn size={18} aria-hidden="true" />
         </Button>
       </Form>
     </Formik>

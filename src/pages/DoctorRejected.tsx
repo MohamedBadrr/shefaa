@@ -1,7 +1,7 @@
 import WrapperComponent from "@/components/ui/WrapperComponent";
 import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
-import { CircleAlert, MessageSquareText } from "lucide-react";
+import { CircleAlert } from "lucide-react";
 
 const DoctorRejected = () => {
   return (
@@ -22,7 +22,6 @@ const DoctorRejected = () => {
         </p>
         <Link to="/contact-us">
           <Button variant="gradient" className="mt-8">
-            <MessageSquareText size={17} aria-hidden="true" />
             Contact support
           </Button>
         </Link>

@@ -1,6 +1,6 @@
 import type { PublicDoctor } from "@/Features/Auth/@types";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BriefcaseMedical, Star } from "lucide-react";
+import { BriefcaseMedical, Star } from "lucide-react";
 import { Link } from "react-router";
 
 type DoctorCardProps = {
@@ -32,12 +32,15 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
           <h2 className="mt-1 truncate text-lg font-extrabold text-neutral-900">
             Dr. {doctor.firstName} {doctor.lastName}
           </h2>
-          <p className="mt-1 text-sm font-semibold text-neutral-500">{doctor.degree}</p>
+          <p className="mt-1 text-sm font-semibold text-neutral-500">
+            {doctor.degree}
+          </p>
         </div>
       </div>
 
       <p className="mt-5 line-clamp-3 min-h-18 text-sm leading-6 text-neutral-500">
-        {doctor.description || "Experienced specialist ready to support your healthcare journey."}
+        {doctor.description ||
+          "Experienced specialist ready to support your healthcare journey."}
       </p>
 
       <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-primary-100 pt-4 text-xs font-bold text-neutral-500">
@@ -52,12 +55,20 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
       </div>
 
       <div className="mt-5 flex items-center justify-between gap-3">
-        <span className={doctor.isAvailable ? "text-xs font-bold text-primary-700" : "text-xs font-bold text-neutral-400"}>
-          {doctor.isAvailable ? "Available for appointments" : "Currently unavailable"}
+        <span
+          className={
+            doctor.isAvailable
+              ? "text-xs font-bold text-primary-700"
+              : "text-xs font-bold text-neutral-400"
+          }
+        >
+          {doctor.isAvailable
+            ? "Available for appointments"
+            : "Currently unavailable"}
         </span>
         <Link to={`/doctors/${doctor.id}`}>
           <Button variant="gradient" size="sm">
-            View profile <ArrowRight />
+            View profile
           </Button>
         </Link>
       </div>

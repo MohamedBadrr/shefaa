@@ -13,6 +13,9 @@ import DoctorDashboard from "./pages/DoctorDashboard";
 import DoctorPendingApproval from "./pages/DoctorPendingApproval";
 import DoctorRejected from "./pages/DoctorRejected";
 import GuestLayout from "./Layouts/GuestLayout";
+import PatientLayout from "./Layouts/PatientLayout";
+import PatientAppointments from "./pages/PatientAppointments";
+import PatientProfile from "./pages/PatientProfile";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +74,19 @@ export const router = createBrowserRouter([
           {
             path: "/doctor/dashboard",
             element: <DoctorDashboard />,
+          },
+        ],
+      },
+      {
+        element: <PatientLayout />,
+        children: [
+          {
+            path: "/patient/appointments",
+            element: <PatientAppointments />,
+          },
+          {
+            path: "/patient/profile",
+            element: <PatientProfile />,
           },
         ],
       },

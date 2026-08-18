@@ -2,7 +2,7 @@ import { contactFormInitialValues } from "@/Constants/data";
 import InputField from "@/components/fields/InputField";
 import { Button } from "@/components/ui/button";
 import { Form, Formik } from "formik";
-import { Mail, MessageSquareText, Phone, Send, UserRound } from "lucide-react";
+import { Mail, MessageSquareText, Phone, UserRound } from "lucide-react";
 import { toast } from "sonner";
 import { contactValidationSchema } from "../validations/contactValidation";
 import TextareaField from "@/components/fields/TextareaField";
@@ -64,7 +64,6 @@ const ContactForm = () => {
           className="mt-3 w-full md:col-span-2 md:w-fit md:min-w-53"
         >
           Send message
-          <Send size={18} aria-hidden="true" />
         </Button>
       </Form>
     </Formik>

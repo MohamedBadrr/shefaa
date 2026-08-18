@@ -2,7 +2,6 @@ import shefaaAboutArtwork from "@/assets/shefaa-about-cover.png";
 import { aboutStatsData } from "@/Constants/data";
 import { Button } from "@/components/ui/button";
 import WrapperComponent from "@/components/ui/WrapperComponent";
-import { ArrowRight } from "lucide-react";
 
 const AboutHero = () => {
   return (
@@ -27,7 +26,6 @@ const AboutHero = () => {
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <Button variant="gradient" size="lg">
               Book an appointment
-              <ArrowRight size={18} aria-hidden="true" />
             </Button>
             <Button
               variant="outline"

@@ -21,6 +21,27 @@ export type DoctorAppointment = {
   status: string;
 };
 
+export type PatientAppointment = {
+  id: string;
+  doctorId: string;
+  doctorName: string;
+  doctorDegree: string;
+  doctorImageUrl: string | null;
+  appointmentDate: string;
+  timeSlot: string;
+  type: string;
+  status: string;
+  feeAmount: number;
+};
+
+export type PatientProfileValues = {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  age: string;
+  address: string;
+};
+
 export type PublicDoctor = {
   id: string;
   firstName: string;

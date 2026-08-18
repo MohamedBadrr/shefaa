@@ -1,7 +1,6 @@
 import SelectField from "@/components/fields/SelectField";
 import { Button } from "@/components/ui/button";
 import { Form, Formik, useFormikContext } from "formik";
-import { Clock3 } from "lucide-react";
 import type {
   DoctorSchedule,
   PatientAppointmentValues,
@@ -76,7 +75,7 @@ const AppointmentForm = ({ doctor }: AppointmentFormProps) => {
           loading={appointmentMutation.isPending}
           disabled={appointmentMutation.isPending}
         >
-          Request appointment <Clock3 />
+          Request appointment
         </Button>
       </Form>
     </Formik>
