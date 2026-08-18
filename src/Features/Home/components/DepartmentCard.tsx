@@ -2,6 +2,7 @@ import type { DepartmentType } from "@/Features/Auth/@types";
 import { Button } from "@/components/ui/button";
 import { Bone, Eye, HeartPulse, Stethoscope } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { Link } from "react-router";
 
 const departmentIcons: Record<string, LucideIcon> = {
   Cardiology: HeartPulse,
@@ -10,7 +11,7 @@ const departmentIcons: Record<string, LucideIcon> = {
   Pediatrics: Stethoscope,
 };
 
-const DepartmentCard = ({ name, description }: DepartmentType) => {
+const DepartmentCard = ({ id, name, description }: DepartmentType) => {
   const Icon = departmentIcons[name] ?? Stethoscope;
 
   return (
@@ -30,9 +31,11 @@ const DepartmentCard = ({ name, description }: DepartmentType) => {
         </p>
       </div>
 
-      <Button variant="gradient" size="sm" className="mt-6 px-4">
-        See doctors
-      </Button>
+      <Link to={`/doctors?department=${id}`} className="mt-6">
+        <Button variant="gradient" size="sm" className="w-full px-4">
+          See doctors
+        </Button>
+      </Link>
     </article>
   );
 };

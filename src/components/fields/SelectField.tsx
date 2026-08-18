@@ -23,6 +23,7 @@ type SelectFieldProps = {
   containerClassName?: string;
   labelClassName?: string;
   triggerClassName?: string;
+  onChange?: (value: string) => void;
 };
 
 const SelectField = ({
@@ -33,6 +34,7 @@ const SelectField = ({
   containerClassName,
   labelClassName,
   triggerClassName,
+  onChange,
 }: SelectFieldProps) => {
   const [field, meta, helpers] = useField(name);
 
@@ -47,8 +49,9 @@ const SelectField = ({
       <Select
         value={field.value}
         onValueChange={(value) => {
-          setValue(value);
-          setTouched(true);
+          setValue(value, true);
+          setTouched(true, false);
+          onChange?.(value);
         }}
       >
         <SelectTrigger

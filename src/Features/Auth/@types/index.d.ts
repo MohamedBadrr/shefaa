@@ -20,6 +20,58 @@ export type DoctorAppointment = {
   type: string;
   status: string;
 };
+
+export type PublicDoctor = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  imageUrl: string | null;
+  degree: string;
+  fee: number;
+  yearsOfExperience: number;
+  description: string | null;
+  isAvailable: boolean;
+  departmentId: string;
+  departmentName: string;
+  departmentDescription: string | null;
+  rating: number;
+  reviewsCount: number;
+};
+
+export type PatientAppointmentValues = {
+  appointmentDate: string;
+  timeSlot: string;
+  scheduleId: string;
+  type: "regular";
+};
+
+export type DoctorSchedule = {
+  id: string;
+  day: string;
+  timeSlot: string;
+};
+
+export type DoctorReview = {
+  id: string;
+  appointmentId: string;
+  patientId: string;
+  patientName: string;
+  patientImageUrl: string | null;
+  rating: number;
+  comment: string | null;
+  createdAt: string;
+};
+
+export type ReviewFormValues = {
+  appointmentId: string;
+  rating: string;
+  comment: string;
+};
+
+export type ReviewableAppointment = {
+  id: string;
+  label: string;
+};
 type BaseUser = {
   id: string;
   email: string;

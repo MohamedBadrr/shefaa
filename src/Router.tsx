@@ -4,6 +4,7 @@ import MainLayout from "./Layouts/MainLayout";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import Doctors from "./pages/Doctors";
+import DoctorDetails from "./pages/DoctorDetails";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ProtectedLayout from "./Layouts/ProtectedLayout";
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
       {
         path: "/doctors",
         element: <Doctors />,
+      },
+      {
+        path: "/doctors/:doctorId",
+        element: <DoctorDetails />,
       },
     ],
   },
