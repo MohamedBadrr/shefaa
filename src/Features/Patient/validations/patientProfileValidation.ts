@@ -22,4 +22,8 @@ export const patientProfileValidationSchema = Yup.object({
     .trim()
     .min(5, "Address is too short")
     .required("Address is required"),
+  imageFile: Yup.mixed()
+    .nullable()
+    .test("file-size", "Image must be smaller than 5 MB", (file) => !file || (file as File).size <= 5 * 1024 * 1024)
+    .test("file-type", "Choose a valid image file", (file) => !file || (file as File).type.startsWith("image/")),
 });

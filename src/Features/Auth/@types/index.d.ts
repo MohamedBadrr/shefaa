@@ -40,6 +40,7 @@ export type PatientProfileValues = {
   phoneNumber: string;
   age: string;
   address: string;
+  imageFile: File | null;
 };
 
 export type PublicDoctor = {

@@ -6,6 +6,7 @@ import { useAuthStore } from "@/store/AuthStore";
 import type { PatientProfileValues } from "@/Features/Auth/@types";
 import { useUpdatePatientProfile } from "../hooks/useUpdatePatientProfile";
 import { patientProfileValidationSchema } from "../validations/patientProfileValidation";
+import PatientPhotoField from "./PatientPhotoField";
 
 const labelClassName =
   "not-sr-only mb-2 block text-xs font-extrabold text-neutral-700";
@@ -21,6 +22,7 @@ const PatientProfileForm = () => {
     phoneNumber: user.phoneNumber ?? "",
     age: user.age?.toString() ?? "",
     address: user.address ?? "",
+    imageFile: null,
   };
 
   return (
@@ -31,6 +33,9 @@ const PatientProfileForm = () => {
       onSubmit={(values) => updateMutation.mutate(values)}
     >
       <Form className="grid gap-1 sm:grid-cols-2">
+        <div className="sm:col-span-2">
+          <PatientPhotoField currentImage={user.imageUrl} />
+        </div>
         <InputField
           name="firstName"
           label="First name"

@@ -9,6 +9,8 @@ const PatientAccountMenu = () => {
 
   if (!user || user.role !== "patient") return null;
 
+  const initials = `${user.firstName[0] ?? ""}${user.lastName[0] ?? ""}`;
+
   return (
     <div className="relative">
       <button
@@ -18,14 +20,21 @@ const PatientAccountMenu = () => {
         aria-label="Open account menu"
         aria-expanded={open}
       >
-        <UserRound size={19} />
+        {user.imageUrl ? (
+          <img src={user.imageUrl} alt="Your profile" className="size-10 rounded-full object-cover" />
+        ) : (
+          <span className="flex size-10 items-center justify-center rounded-full bg-primary-100 text-xs font-extrabold text-primary-700">{initials}</span>
+        )}
       </button>
       {open && (
         <div className="absolute top-13 right-0 z-50 w-60 rounded-xl border border-primary-100 bg-white p-2 shadow-[0_16px_35px_rgba(0,84,140,0.16)]">
-          <div className="border-b border-primary-100 px-3 py-2">
-            <p className="truncate text-sm font-extrabold text-neutral-900">
-              {user.firstName} {user.lastName}
-            </p>
+          <div className="flex items-center gap-3 border-b border-primary-100 px-3 py-3">
+            {user.imageUrl ? (
+              <img src={user.imageUrl} alt={`${user.firstName} ${user.lastName}`} className="size-10 rounded-full object-cover" />
+            ) : (
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary-100 text-xs font-extrabold text-primary-700">{initials}</span>
+            )}
+            <p className="truncate text-sm font-extrabold text-neutral-900">{user.firstName} {user.lastName}</p>
           </div>
           <Link
             to="/patient/appointments"

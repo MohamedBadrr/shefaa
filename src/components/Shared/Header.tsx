@@ -18,10 +18,14 @@ const Header = () => {
     <nav className=" border-b border-primary/50">
       <div className="py-5 px-6 md:py-8 md:px-10 lg:py-8 lg:px-25 flex items-center md:justify-between w-full">
         {/* logo */}
-        <div className="flex items-center justify-center gap-2">
-          <img src={logo} alt="shefaa logo" className="w-11.5 h-12" />
-          <h1 className="text-primary-700 text-[27px] font-semibold">Shefaa</h1>
-        </div>
+        <Link to={"/"}>
+          <div className="flex items-center justify-center gap-2">
+            <img src={logo} alt="shefaa logo" className="w-11.5 h-12" />
+            <h1 className="text-primary-700 text-[27px] font-semibold">
+              Shefaa
+            </h1>
+          </div>
+        </Link>
 
         {/* links */}
         <div className="hidden md:flex items-center justify-center gap-10">
