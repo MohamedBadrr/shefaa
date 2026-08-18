@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Camera, ImagePlus } from "lucide-react";
 import { useFormikContext } from "formik";
-import type { PatientProfileValues } from "@/Features/Auth/@types";
+import type { DoctorProfileValues, PatientProfileValues } from "@/Features/Auth/@types";
+
+type ProfileFormValues = PatientProfileValues | DoctorProfileValues;
 
 const PatientPhotoField = ({ currentImage }: { currentImage: string | null }) => {
-  const { values, setFieldValue, errors, touched } = useFormikContext<PatientProfileValues>();
+  const { values, setFieldValue, errors, touched } = useFormikContext<ProfileFormValues>();
   const [filePreview, setFilePreview] = useState("");
 
   useEffect(() => {

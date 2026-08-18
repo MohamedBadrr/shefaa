@@ -15,10 +15,26 @@ export type DepartmentType = {
 export type DoctorAppointment = {
   id: string;
   patient_id: string;
+  patient_name: string;
   appointment_date: string;
   time_slot: string;
   type: string;
   status: string;
+  fee_amount: number;
+};
+
+export type DoctorProfileValues = {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  age: string;
+  address: string;
+  imageFile: File | null;
+  degree: string;
+  fee: string;
+  yearsOfExperience: string;
+  description: string;
+  departmentId: string;
 };
 
 export type PatientAppointment = {

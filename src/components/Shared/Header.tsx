@@ -7,6 +7,7 @@ import { useAuthStore } from "@/store/AuthStore";
 import { useLogout } from "@/Features/Auth/hooks/useLogout";
 import { getHeaderLinks } from "@/lib/navigation";
 import PatientAccountMenu from "./PatientAccountMenu";
+import DoctorAccountMenu from "./DoctorAccountMenu";
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -56,6 +57,19 @@ const Header = () => {
           ) : user?.role === "patient" ? (
             <div className="flex items-center gap-3">
               <PatientAccountMenu />
+              <Button
+                onClick={() => mutateLogout()}
+                variant="gradient"
+                loading={isPendingLogout}
+                disabled={isPendingLogout}
+                size="lg"
+              >
+                Logout
+              </Button>
+            </div>
+          ) : user?.role === "doctor" ? (
+            <div className="flex items-center gap-3">
+              <DoctorAccountMenu />
               <Button
                 onClick={() => mutateLogout()}
                 variant="gradient"
@@ -125,6 +139,20 @@ const Header = () => {
             ) : user?.role === "patient" ? (
               <>
                 <PatientAccountMenu />
+                <Button
+                  onClick={() => mutateLogout()}
+                  variant="gradient"
+                  className="w-full!"
+                  loading={isPendingLogout}
+                  disabled={isPendingLogout}
+                  size="lg"
+                >
+                  Logout
+                </Button>
+              </>
+            ) : user?.role === "doctor" ? (
+              <>
+                <DoctorAccountMenu />
                 <Button
                   onClick={() => mutateLogout()}
                   variant="gradient"
