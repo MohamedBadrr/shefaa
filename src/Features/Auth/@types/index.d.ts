@@ -1,4 +1,4 @@
-type UserRole = "admin" | "doctor" | "patient";
+export type UserRole = "admin" | "doctor" | "patient";
 type DoctorApprovalStatus = "pending" | "approved" | "rejected";
 type AuthUser =  Doctor | Patient | Admin;
 export type DepartmentOption = {
@@ -10,6 +10,15 @@ export type DepartmentType = {
   name: string;
   description: string;
   is_active: boolean;
+};
+
+export type DoctorAppointment = {
+  id: string;
+  patient_id: string;
+  appointment_date: string;
+  time_slot: string;
+  type: string;
+  status: string;
 };
 type BaseUser = {
   id: string;

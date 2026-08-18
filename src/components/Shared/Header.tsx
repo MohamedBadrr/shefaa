@@ -5,12 +5,13 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useAuthStore } from "@/store/AuthStore";
 import { useLogout } from "@/Features/Auth/hooks/useLogout";
-import { links } from "@/Constants/data";
+import { getHeaderLinks } from "@/lib/navigation";
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, user } = useAuthStore();
   const { isPending: isPendingLogout, mutate: mutateLogout } = useLogout();
+  const roleLinks = getHeaderLinks(isAuthenticated, user?.role);
 
   return (
     <nav className="">
@@ -23,7 +24,7 @@ const Header = () => {
 
         {/* links */}
         <div className="hidden md:flex items-center justify-center gap-10">
-          {links.map(({ link, to }, index) => (
+          {roleLinks.map(({ link, to }, index) => (
             <NavLink
               to={to}
               key={index}
@@ -76,11 +77,11 @@ const Header = () => {
       {openMenu && (
         <div
           className={`absolute w-full flex items-start flex-col gap-4 px-6 py-5 bg-secondary 
-        transition-all duration-300 ease-out 
+        transition-all duration-300 ease-out  z-100
         ${openMenu ? "opactit-100 translate-y-0 visible" : "opacity-0 -translate-y-3 invisible pointer-events-none"}
         `}
         >
-          {links.map(({ link, to }, index) => (
+          {roleLinks.map(({ link, to }, index) => (
             <NavLink
               to={to}
               key={index}
@@ -100,7 +101,7 @@ const Header = () => {
             {!isAuthenticated ? (
               <Link to="/login" onClick={() => setOpenMenu(false)}>
                 <Button variant={"gradient"} className={"w-full!"} size={"lg"}>
-                  Join Usdas
+                  Join Us
                 </Button>
               </Link>
             ) : (

@@ -6,15 +6,26 @@ import ContactUs from "./pages/ContactUs";
 import Doctors from "./pages/Doctors";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ProtectedLayout from "./Layouts/ProtectedLayout";
+import DoctorLayout from "./Layouts/DoctorLayout";
+import DoctorDashboard from "./pages/DoctorDashboard";
+import DoctorPendingApproval from "./pages/DoctorPendingApproval";
+import DoctorRejected from "./pages/DoctorRejected";
+import GuestLayout from "./Layouts/GuestLayout";
 
 export const router = createBrowserRouter([
   {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
+    element: <GuestLayout />,
+    children: [
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+    ],
   },
   {
     path: "/",
@@ -35,6 +46,28 @@ export const router = createBrowserRouter([
       {
         path: "/doctors",
         element: <Doctors />,
+      },
+    ],
+  },
+  {
+    element: <ProtectedLayout />,
+    children: [
+      {
+        element: <DoctorLayout />,
+        children: [
+          {
+            path: "/doctor/pending-approval",
+            element: <DoctorPendingApproval />,
+          },
+          {
+            path: "/doctor/rejected",
+            element: <DoctorRejected />,
+          },
+          {
+            path: "/doctor/dashboard",
+            element: <DoctorDashboard />,
+          },
+        ],
       },
     ],
   },
