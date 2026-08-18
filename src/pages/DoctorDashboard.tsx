@@ -1,5 +1,5 @@
-import DoctorSidebar from "@/Features/Doctor/components/DoctorSidebar";
-import { useDoctorAppointments } from "@/Features/Doctor/hooks/useDoctorAppointments";
+import DoctorSidebar from "@/Features/DoctorDashboard/components/DoctorSidebar";
+import { useDoctorAppointments } from "@/Features/DoctorDashboard/hooks/useDoctorAppointments";
 import {
   SidebarInset,
   SidebarProvider,
