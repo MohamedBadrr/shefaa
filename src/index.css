@@ -101,6 +101,7 @@
 
 :root {
   /* Page */
+  color-scheme: only light;
   --background: #ffffff;
   --foreground: #3d3d3d;
   --card: #ffffff;
@@ -231,6 +232,9 @@
   --sidebar-ring: #00a4f4;
 }
 
+html {
+  color-scheme: only light;
+}
 @layer base {
   * {
     @apply border-border outline-ring/50;
