@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
 import heroBanner from "@/assets/hero.png";
 import WrapperComponent from "@/components/ui/WrapperComponent";
+import { Link } from "react-router";
 const HeroSection = () => {
   return (
     <WrapperComponent>
@@ -25,11 +26,12 @@ const HeroSection = () => {
             <span className="text-primary">Get Started </span>or Book an
             Appointment today.
           </p>
-          <Button variant={"gradient"} size={"lg"} className="w-fit">
-            {" "}
-            Book an appointment <ArrowRight />
-          </Button>
-
+          <Link to={"/doctors"}>
+            <Button variant={"gradient"} size={"lg"} className="w-fit">
+              {" "}
+              Book an appointment <ArrowRight />
+            </Button>
+          </Link>
           <p className="text-sm text-neutral-300">
             Trusted by many patients across the country.
           </p>

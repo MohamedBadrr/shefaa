@@ -2,6 +2,7 @@ import shefaaAboutArtwork from "@/assets/shefaa-about-cover.png";
 import { aboutStatsData } from "@/Constants/data";
 import { Button } from "@/components/ui/button";
 import WrapperComponent from "@/components/ui/WrapperComponent";
+import { Link } from "react-router";
 
 const AboutHero = () => {
   return (
@@ -24,9 +25,11 @@ const AboutHero = () => {
           </p>
 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <Button variant="gradient" size="lg">
-              Book an appointment
-            </Button>
+            <Link to={"/doctors"}>
+              <Button variant="gradient" size="lg">
+                Book an appointment
+              </Button>
+            </Link>
             <Button
               variant="outline"
               size="lg"

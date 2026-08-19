@@ -16,7 +16,7 @@ const HelpDeskSupport = () => {
   return (
     <WrapperComponent className="bg-white pt-7 pb-9 md:pt-16 md:pb-18 ">
       <div className="mx-auto max-w-202  text-center">
-        <h2 className="text-[28px] leading-tight font-bold text-neutral-900 md:text-[31px]">
+        <h2 className="text-[26px] leading-tight font-bold text-neutral-900 md:text-[31px]">
           Reach our{" "}
           <span className="bg-linear-to-r from-primary-700 via-primary-500 to-primary-200 bg-clip-text text-transparent">
             Help Desk
@@ -36,25 +36,25 @@ const HelpDeskSupport = () => {
             resetForm();
           }}
         >
-          <Form className="flex items-start justify-between gap-4 my-10 w-full">
+          <Form className="my-10 grid w-full items-start gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto]">
             <InputField
               name="firstName"
-              containerClassName="w-full"
+              containerClassName="w-full min-w-0"
               icon={<User />}
               className="w-full!"
-              placeholder="First Name"
+              placeholder="Enter your first name"
             />
             <InputField
               name="email"
-              containerClassName="w-full"
+              containerClassName="w-full min-w-0"
               icon={<Mail />}
               className="w-full!"
-              placeholder="Email Adress"
+              placeholder="Enter your email address"
             />
             <Button
               type="submit"
               size="lg"
-              className=" rounded-lg bg-primary-500 px-5 text-[18px] font-bold shadow-none hover:bg-primary-600"
+              className="w-full rounded-lg bg-primary-500 px-5 text-[18px] font-bold shadow-none hover:bg-primary-600 md:w-auto"
             >
               Contact us
             </Button>

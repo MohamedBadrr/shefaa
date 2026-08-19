@@ -137,7 +137,7 @@ const Header = () => {
                 </Button>
               </Link>
             ) : user?.role === "patient" ? (
-              <>
+              <div className="flex flex-col justify-center w-full items-center gap-3">
                 <PatientAccountMenu />
                 <Button
                   onClick={() => mutateLogout()}
@@ -149,9 +149,9 @@ const Header = () => {
                 >
                   Logout
                 </Button>
-              </>
+              </div>
             ) : user?.role === "doctor" ? (
-              <>
+              <div className="flex flex-col justify-center w-full items-center gap-3">
                 <DoctorAccountMenu />
                 <Button
                   onClick={() => mutateLogout()}
@@ -163,7 +163,7 @@ const Header = () => {
                 >
                   Logout
                 </Button>
-              </>
+              </div>
             ) : (
               <Button
                 onClick={() => mutateLogout()}
