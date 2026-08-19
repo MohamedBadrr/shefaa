@@ -4,6 +4,7 @@ import * as React from "react";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { cva, type VariantProps } from "class-variance-authority";
+import { PanelLeft } from "lucide-react";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
@@ -270,6 +271,7 @@ function SidebarTrigger({
       }}
       {...props}
     >
+      <PanelLeft />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );

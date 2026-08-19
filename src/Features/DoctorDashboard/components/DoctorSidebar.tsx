@@ -15,19 +15,20 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarRail,
 } from "@/components/ui/sidebar";
 
 const DoctorSidebar = () => {
   const { pathname, hash } = useLocation();
 
   return (
-    <Sidebar collapsible="offcanvas" className="border-primary-100 bg-white">
-      <SidebarHeader className="border-b border-primary-100 p-5">
-        <div className="flex items-center gap-3">
+    <Sidebar collapsible="icon" className="border-primary-100 bg-white">
+      <SidebarHeader className="border-b border-primary-100 p-5 group-data-[collapsible=icon]:border-b-0 group-data-[collapsible=icon]:p-2">
+        <div className="flex items-center gap-3 group-data-[collapsible=icon]:justify-center">
           <span className="flex size-10 items-center justify-center rounded-lg bg-primary-50 text-primary-700">
             <Stethoscope size={21} aria-hidden="true" />
           </span>
-          <div>
+          <div className="group-data-[collapsible=icon]:hidden">
             <p className="text-[13px] font-extrabold text-neutral-900">
               Doctor workspace
             </p>
@@ -68,11 +69,12 @@ const DoctorSidebar = () => {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter>
+      <SidebarFooter className="group-data-[collapsible=icon]:hidden">
         <p className="px-2 py-2 text-[11px] font-medium text-neutral-400">
           More doctor tools are coming soon.
         </p>
       </SidebarFooter>
+      <SidebarRail />
     </Sidebar>
   );
 };
