@@ -1,6 +1,7 @@
 import DoctorAppointmentCard from "@/Features/DoctorDashboard/components/DoctorAppointmentCard";
 import DoctorOverviewStats from "@/Features/DoctorDashboard/components/DoctorOverviewStats";
 import DoctorSidebar from "@/Features/DoctorDashboard/components/DoctorSidebar";
+import DoctorTimesSection from "@/Features/DoctorDashboard/components/DoctorTimesSection";
 import { useDoctorAppointments } from "@/Features/DoctorDashboard/hooks/useDoctorAppointments";
 import {
   SidebarInset,
@@ -103,6 +104,7 @@ const DoctorDashboard = () => {
               errorMessage="We could not load your appointments right now."
             />
           </section>
+          <DoctorTimesSection />
         </main>
       </SidebarInset>
     </SidebarProvider>

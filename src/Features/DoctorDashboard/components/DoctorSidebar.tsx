@@ -1,5 +1,6 @@
 import {
   CalendarDays,
+  Clock3,
   LayoutDashboard,
   Stethoscope,
 } from "lucide-react";
@@ -62,6 +63,16 @@ const DoctorSidebar = () => {
                 >
                   <CalendarDays size={17} aria-hidden="true" />
                   <span>Appointments</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  isActive={pathname === "/doctor/dashboard" && hash === "#times"}
+                  render={<NavLink to="/doctor/dashboard#times" />}
+                  className="text-[13px] font-bold"
+                >
+                  <Clock3 size={17} aria-hidden="true" />
+                  <span>My times</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
