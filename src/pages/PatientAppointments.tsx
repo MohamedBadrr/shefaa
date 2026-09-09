@@ -1,4 +1,3 @@
-import Loading from "@/components/Shared/Loading";
 import WrapperComponent from "@/components/ui/WrapperComponent";
 import { usePatientAppointments } from "@/Features/Patient/hooks/usePatientAppointments";
 import PatientAppointmentCard from "@/Features/Patient/components/PatientAppointmentCard";
@@ -10,6 +9,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useMemo, useState } from "react";
+import type { PatientAppointment } from "@/Features/Auth/@types";
+import WithLoadingAndError from "@/HOCs/WithLoadingandError";
 
 type AppointmentFilter =
   | "all"
@@ -17,6 +18,24 @@ type AppointmentFilter =
   | "completed"
   | "cancelled"
   | "rejected";
+
+const AppointmentResults = ({
+  appointments,
+}: {
+  appointments: PatientAppointment[];
+}) => {
+  if (appointments.length === 0) return null;
+
+  return (
+    <div className="mt-5 grid gap-5">
+      {appointments.map((appointment) => (
+        <PatientAppointmentCard key={appointment.id} appointment={appointment} />
+      ))}
+    </div>
+  );
+};
+
+const AppointmentResultsWithState = WithLoadingAndError(AppointmentResults);
 
 const PatientAppointments = () => {
   const {
@@ -72,12 +91,13 @@ const PatientAppointments = () => {
             </Select>
           </div>
         </header>
-        {isLoading && <Loading label="Loading appointments" />}
-        {isError && (
-          <p className="py-20 text-center text-sm font-semibold text-red-500">
-            We could not load your appointments right now.
-          </p>
-        )}
+        <AppointmentResultsWithState
+          appointments={filteredAppointments}
+          isLoading={isLoading}
+          isError={isError}
+          loadingLabel="Loading appointments"
+          errorMessage="We could not load your appointments right now."
+        />
         {!isLoading && !isError && appointments.length === 0 && (
           <div className="mt-8 rounded-2xl border border-primary-200 bg-white py-20 text-center text-sm text-neutral-500">
             You do not have any appointments yet.
@@ -91,16 +111,6 @@ const PatientAppointments = () => {
               No appointments match this filter.
             </div>
           )}
-        {!isLoading && !isError && filteredAppointments.length > 0 && (
-          <div className="mt-5 grid gap-5">
-            {filteredAppointments.map((appointment) => (
-              <PatientAppointmentCard
-                key={appointment.id}
-                appointment={appointment}
-              />
-            ))}
-          </div>
-        )}
       </WrapperComponent>
     </main>
   );

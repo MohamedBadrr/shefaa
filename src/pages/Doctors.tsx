@@ -3,11 +3,44 @@ import { Link, useSearchParams } from "react-router";
 import { ArrowLeft, Search } from "lucide-react";
 import WrapperComponent from "@/components/ui/WrapperComponent";
 import { Button } from "@/components/ui/button";
-import Loading from "@/components/Shared/Loading";
 import { useDepartments } from "@/Features/Auth/hooks/useDepartments";
 import DoctorCard from "@/Features/Doctors/components/DoctorCard";
 import DoctorsFilter from "@/Features/Doctors/components/DoctorsFilter";
 import { useDoctors } from "@/Features/Doctors/hooks/useDoctors";
+import type { PublicDoctor } from "@/Features/Auth/@types";
+import WithLoadingAndError from "@/HOCs/WithLoadingandError";
+
+type DoctorsResultsProps = {
+  doctors: PublicDoctor[];
+};
+
+const DoctorsResults = ({ doctors }: DoctorsResultsProps) => {
+  if (doctors.length === 0) {
+    return (
+      <div className="mx-auto flex max-w-lg flex-col items-center py-20 text-center">
+        <div className="flex size-14 items-center justify-center rounded-full bg-primary-100 text-primary-700">
+          <Search />
+        </div>
+        <h2 className="mt-5 text-xl font-extrabold text-neutral-900">
+          No doctors found
+        </h2>
+        <p className="mt-2 text-sm leading-6 text-neutral-500">
+          Try another department or check back soon.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {doctors.map((doctor) => (
+        <DoctorCard key={doctor.id} doctor={doctor} />
+      ))}
+    </div>
+  );
+};
+
+const DoctorsResultsWithState = WithLoadingAndError(DoctorsResults);
 
 const Doctors = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -55,42 +88,25 @@ const Doctors = () => {
           />
         </div>
 
-        {isLoading && <Loading label="Loading doctors" />}
-        {isError && (
-          <div className="py-20 text-center text-sm font-semibold text-red-500">
-            We could not load doctors right now. Please try again later.
-          </div>
-        )}
-        {!isLoading && !isError && doctors.length === 0 && (
-          <div className="mx-auto flex max-w-lg flex-col items-center py-20 text-center">
-            <div className="flex size-14 items-center justify-center rounded-full bg-primary-100 text-primary-700">
-              <Search />
-            </div>
-            <h2 className="mt-5 text-xl font-extrabold text-neutral-900">
-              No doctors found
-            </h2>
-            <p className="mt-2 text-sm leading-6 text-neutral-500">
-              Try another department or check back soon.
-            </p>
-            {departmentId && (
-              <Button
-                variant="outline"
-                className="mt-5"
-                onClick={() => {
-                  setDepartmentId("");
-                  setSearchParams({});
-                }}
-              >
-                View all doctors
-              </Button>
-            )}
-          </div>
-        )}
-        {!isLoading && !isError && doctors.length > 0 && (
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {doctors.map((doctor) => (
-              <DoctorCard key={doctor.id} doctor={doctor} />
-            ))}
+        <DoctorsResultsWithState
+          doctors={doctors}
+          isLoading={isLoading}
+          isError={isError}
+          loadingLabel="Loading doctors"
+          errorMessage="We could not load doctors right now. Please try again later."
+        />
+        {!isLoading && !isError && doctors.length === 0 && departmentId && (
+          <div className="flex justify-center">
+            <Button
+              variant="outline"
+              className="-mt-14"
+              onClick={() => {
+                setDepartmentId("");
+                setSearchParams({});
+              }}
+            >
+              View all doctors
+            </Button>
           </div>
         )}
 

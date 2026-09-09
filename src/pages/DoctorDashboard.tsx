@@ -7,8 +7,35 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import Loading from "@/components/Shared/Loading";
 import { useAuthStore } from "@/store/AuthStore";
+import type { DoctorAppointment } from "@/Features/Auth/@types";
+import WithLoadingAndError from "@/HOCs/WithLoadingandError";
+
+const DoctorAppointmentResults = ({
+  appointments,
+}: {
+  appointments: DoctorAppointment[];
+}) => {
+  if (appointments.length === 0) {
+    return (
+      <div className="mt-5 rounded-xl border border-primary-200 bg-white p-10 text-center text-sm text-neutral-500">
+        No appointments yet.
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-5 space-y-3">
+      {appointments.map((appointment) => (
+        <DoctorAppointmentCard key={appointment.id} appointment={appointment} />
+      ))}
+    </div>
+  );
+};
+
+const DoctorAppointmentResultsWithState = WithLoadingAndError(
+  DoctorAppointmentResults,
+);
 
 const DoctorDashboard = () => {
   const {
@@ -68,27 +95,13 @@ const DoctorDashboard = () => {
                 {appointments.length} total
               </span>
             </div>
-            {isLoading && <Loading label="Loading appointments" />}
-            {isError && (
-              <div className="mt-5 rounded-xl border border-red-200 bg-white p-6 text-sm font-semibold text-red-500">
-                We could not load your appointments right now.
-              </div>
-            )}
-            {!isLoading && !isError && appointments.length === 0 && (
-              <div className="mt-5 rounded-xl border border-primary-200 bg-white p-10 text-center text-sm text-neutral-500">
-                No appointments yet.
-              </div>
-            )}
-            {!isLoading && !isError && appointments.length > 0 && (
-              <div className="mt-5 space-y-3">
-                {appointments.map((appointment) => (
-                  <DoctorAppointmentCard
-                    key={appointment.id}
-                    appointment={appointment}
-                  />
-                ))}
-              </div>
-            )}
+            <DoctorAppointmentResultsWithState
+              appointments={appointments}
+              isLoading={isLoading}
+              isError={isError}
+              loadingLabel="Loading appointments"
+              errorMessage="We could not load your appointments right now."
+            />
           </section>
         </main>
       </SidebarInset>
