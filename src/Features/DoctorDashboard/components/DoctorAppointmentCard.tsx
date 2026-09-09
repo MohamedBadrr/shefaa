@@ -4,6 +4,7 @@ import { getAppointmentStatusMeta } from "@/lib/appointmentStatus";
 import { formatDate } from "@/lib/date";
 import { CalendarDays, Clock3 } from "lucide-react";
 import { useUpdateDoctorAppointmentStatus } from "../hooks/useUpdateDoctorAppointmentStatus";
+import ConfirmationDialog from "@/components/Shared/ConfirmationDialog";
 
 const DoctorAppointmentCard = ({
   appointment,
@@ -59,27 +60,37 @@ const DoctorAppointmentCard = ({
       {(canCancel || canComplete) && (
         <div className="mt-4 flex justify-end  flex-wrap gap-2 border-t border-primary-100 pt-4">
           {canComplete && (
-            <Button
-              size="sm"
-              variant="gradient"
-              loading={statusMutation.isPending}
-              disabled={statusMutation.isPending}
-              onClick={() => updateStatus("completed")}
-            >
-              Complete appointment
-            </Button>
+            <ConfirmationDialog
+              trigger={
+                <Button size="sm" variant="gradient">
+                  Complete appointment
+                </Button>
+              }
+              title="Complete this appointment?"
+              description="This will mark the appointment as completed for you and the patient."
+              confirmLabel="Complete appointment"
+              destructive={false}
+              isPending={statusMutation.isPending}
+              onConfirm={() => updateStatus("completed")}
+            />
           )}
           {canCancel && (
-            <Button
-              size="sm"
-              variant="outline"
-              className="text-red-600 hover:bg-red-50 hover:text-red-700"
-              loading={statusMutation.isPending}
-              disabled={statusMutation.isPending}
-              onClick={() => updateStatus("cancelled")}
-            >
-              Cancel appointment
-            </Button>
+            <ConfirmationDialog
+              trigger={
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="text-red-600 hover:bg-red-50 hover:text-red-700"
+                >
+                  Cancel appointment
+                </Button>
+              }
+              title="Cancel this appointment?"
+              description="The patient will no longer be able to use this appointment slot."
+              confirmLabel="Cancel appointment"
+              isPending={statusMutation.isPending}
+              onConfirm={() => updateStatus("cancelled")}
+            />
           )}
         </div>
       )}
