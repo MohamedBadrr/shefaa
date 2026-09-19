@@ -1,6 +1,6 @@
 import WrapperComponent from "@/components/ui/WrapperComponent";
 import { usePatientAppointments } from "@/Features/Patient/hooks/usePatientAppointments";
-import PatientAppointmentCard from "@/Features/Patient/components/PatientAppointmentCard";
+import PatientAppointmentsTable from "@/Features/Patient/components/PatientAppointmentsTable";
 import {
   Select,
   SelectContent,
@@ -9,7 +9,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useMemo, useState } from "react";
-import type { PatientAppointment } from "@/Features/Auth/@types";
 import WithLoadingAndError from "@/HOCs/WithLoadingandError";
 
 type AppointmentFilter =
@@ -18,22 +17,6 @@ type AppointmentFilter =
   | "completed"
   | "cancelled"
   | "rejected";
-
-const AppointmentResults = ({
-  appointments,
-}: {
-  appointments: PatientAppointment[];
-}) => {
-  if (appointments.length === 0) return null;
-
-  return (
-    <div className="mt-5 grid gap-5">
-      {appointments.map((appointment) => (
-        <PatientAppointmentCard key={appointment.id} appointment={appointment} />
-      ))}
-    </div>
-  );
-};
 
 const PatientAppointments = () => {
   const {
@@ -75,6 +58,7 @@ const PatientAppointments = () => {
             >
               <SelectTrigger
                 id="appointment-filter"
+                aria-label="Filter appointments by status"
                 className="h-12 w-full min-w-56 border-primary-200 bg-white px-5 text-sm sm:w-64"
               >
                 <SelectValue />
@@ -94,7 +78,7 @@ const PatientAppointments = () => {
           isError={isError}
           errorMessageProps={{ message: "We could not load your appointments right now." }}
         >
-          <AppointmentResults appointments={filteredAppointments} />
+          <PatientAppointmentsTable appointments={filteredAppointments} />
         </WithLoadingAndError>
         {!isLoading && !isError && appointments.length === 0 && (
           <div className="mt-8 rounded-2xl border border-primary-200 bg-white py-20 text-center text-sm text-neutral-500">
