@@ -17,6 +17,7 @@ type ConfirmationDialogProps = {
   title: string;
   description: string;
   confirmLabel: string;
+  cancelLabel?: string;
   onConfirm: () => void;
   isPending?: boolean;
   destructive?: boolean;
@@ -27,6 +28,7 @@ const ConfirmationDialog = ({
   title,
   description,
   confirmLabel,
+  cancelLabel = "Keep it",
   onConfirm,
   isPending = false,
   destructive = true,
@@ -48,7 +50,7 @@ const ConfirmationDialog = ({
         </DialogHeader>
         <DialogFooter>
           <DialogClose render={<Button variant="outline" />}>
-            Keep it
+            {cancelLabel}
           </DialogClose>
           <Button
             variant={destructive ? "destructive" : "gradient"}

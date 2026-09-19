@@ -3,6 +3,15 @@ export function mapStatus(status: string) {
   let className = "bg-neutral-100 text-neutral-600";
 
   switch (name) {
+    case "admin":
+      className = "bg-violet-50 text-violet-700";
+      break;
+    case "doctor":
+      className = "bg-primary-50 text-primary-700";
+      break;
+    case "patient":
+      className = "bg-teal-50 text-teal-700";
+      break;
     case "pending":
       className = "bg-amber-50 text-amber-700";
       break;
