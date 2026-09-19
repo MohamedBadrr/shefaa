@@ -34,15 +34,19 @@ const DoctorsFilter = () => {
       >
         <SelectTrigger
           aria-label="Filter doctors by department"
-          className="h-12! w-full min-w-56 sm:w-auto"
+          className="h-12! w-full min-w-56 sm:w-auto hover:border-primary"
         >
-          <SelectValue>
+          <SelectValue className="cursor-pointer  text-sm font-medium text-gray-700 dark:text-gray-300">
             {selectedOption?.label ?? "Selected department"}
           </SelectValue>
         </SelectTrigger>
         <SelectContent>
           {options.map((option) => (
-            <SelectItem key={option.value} value={option.value}>
+            <SelectItem
+              className="cursor-pointer"
+              key={option.value}
+              value={option.value}
+            >
               {option.label}
             </SelectItem>
           ))}
