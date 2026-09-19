@@ -1,4 +1,4 @@
-import type { ReactElement, ReactNode } from "react";
+import { useState, type ReactElement, type ReactNode } from "react";
 import {
   Dialog,
   DialogContent,
@@ -22,23 +22,28 @@ const AdminDialog = ({
   description,
   children,
   wide = false,
-}: AdminDialogProps) => (
-  <Dialog>
-    <DialogTrigger render={trigger} />
-    <DialogContent
-      className={
-        wide
-          ? "max-h-[90vh] overflow-y-auto sm:max-w-5xl"
-          : "max-h-[90vh] overflow-y-auto sm:max-w-2xl"
-      }
-    >
-      <DialogHeader>
-        <DialogTitle>{title}</DialogTitle>
-        <DialogDescription>{description}</DialogDescription>
-      </DialogHeader>
-      {children}
-    </DialogContent>
-  </Dialog>
-);
+}: AdminDialogProps) => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger render={trigger} />
+      <DialogContent
+        onSubmitCapture={() => setOpen(false)}
+        className={
+          wide
+            ? "max-h-[90vh] overflow-y-auto sm:max-w-5xl"
+            : "max-h-[90vh] overflow-y-auto sm:max-w-2xl"
+        }
+      >
+        <DialogHeader>
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{description}</DialogDescription>
+        </DialogHeader>
+        {children}
+      </DialogContent>
+    </Dialog>
+  );
+};
 
 export default AdminDialog;
