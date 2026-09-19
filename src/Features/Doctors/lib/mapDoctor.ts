@@ -26,3 +26,11 @@ export const mapDoctor = (
     reviewsCount: doctor.reviews_count,
   };
 };
+
+export function mapDoctors(doctors: DoctorRow[], profiles: ProfileRow[], departments: DepartmentRow[]) {
+  const profileMap = new Map(profiles.map((profile) => [profile.id, profile]));
+  const departmentMap = new Map(departments.map((department) => [department.id, department]));
+  return doctors.map((doctor) =>
+    mapDoctor(doctor, profileMap.get(doctor.id), departmentMap.get(doctor.department_id)),
+  );
+}

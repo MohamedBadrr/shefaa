@@ -5,7 +5,7 @@ import { useDoctorSchedules } from "@/Features/Doctors/hooks/useDoctorSchedules"
 import {
   getAvailableDateOptions,
   getTimeOptionsForDate,
-} from "@/Features/Doctors/utils/appointmentDates";
+} from "@/Features/Doctors/lib/appointmentDates";
 import type { AdminAppointmentValues } from "../@types/adminAppointment";
 import { appointmentLabelClassName } from "../constants/adminAppointmentForms";
 

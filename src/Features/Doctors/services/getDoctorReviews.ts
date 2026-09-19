@@ -1,21 +1,8 @@
 import type { DoctorReview } from "@/Features/Auth/@types";
 import { supabase } from "@/lib/supabaseClient";
-
-type ReviewRow = {
-  id: string;
-  appointment_id: string;
-  patient_id: string;
-  rating: number;
-  comment: string;
-  created_at: string;
-};
-
-type ProfileRow = {
-  id: string;
-  first_name: string;
-  last_name: string;
-  image_url: string | null;
-};
+import type { ReviewRow } from "../@types/reviews";
+import type { ProfileRow } from "../@types";
+import { mapReviews } from "../lib/reviews";
 
 export const getDoctorReviews = async (doctorId: string): Promise<DoctorReview[]> => {
   const { data, error } = await supabase
@@ -37,19 +24,5 @@ export const getDoctorReviews = async (doctorId: string): Promise<DoctorReview[]
 
   if (profilesError) throw profilesError;
 
-  const profileMap = new Map((profiles as ProfileRow[]).map((profile) => [profile.id, profile]));
-
-  return reviews.map((review) => {
-    const profile = profileMap.get(review.patient_id);
-    return {
-      id: review.id,
-      appointmentId: review.appointment_id,
-      patientId: review.patient_id,
-      patientName: profile ? `${profile.first_name} ${profile.last_name}` : "Shefaa patient",
-      patientImageUrl: profile?.image_url ?? null,
-      rating: Number(review.rating),
-      comment: review.comment,
-      createdAt: review.created_at,
-    };
-  });
+  return mapReviews(reviews, (profiles ?? []) as ProfileRow[]);
 };

@@ -1,4 +1,13 @@
 import type { DoctorAvailableSlot } from "@/Features/Auth/@types";
+import type { AvailableSlotRow } from "../@types/appointments";
+
+export function mapAvailableSlot(slot: AvailableSlotRow): DoctorAvailableSlot {
+  return {
+    id: slot.schedule_id,
+    appointmentDate: slot.appointment_date,
+    timeSlot: slot.time_slot,
+  };
+}
 
 export type AppointmentOption = {
   label: string;

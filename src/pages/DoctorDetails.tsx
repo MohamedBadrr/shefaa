@@ -14,8 +14,6 @@ const DoctorDetails = () => {
     reviews,
     isLoadingDoctor,
     isDoctorError,
-    isLoadingReviews,
-    isReviewsError,
   } = useDoctorDetails();
 
   if (isLoadingDoctor) return <Loading label="Loading doctor profile" />;
@@ -51,8 +49,6 @@ const DoctorDetails = () => {
           <DoctorInformationTabs
             doctor={doctor}
             reviews={reviews}
-            isLoadingReviews={isLoadingReviews}
-            isReviewsError={isReviewsError}
           />
           <DoctorBookingCard doctor={doctor} />
         </div>

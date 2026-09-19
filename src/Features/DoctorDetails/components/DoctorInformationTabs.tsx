@@ -7,11 +7,9 @@ import DoctorReviews from "@/Features/Doctors/components/DoctorReviews";
 type DoctorInformationTabsProps = {
   doctor: PublicDoctor;
   reviews: DoctorReview[];
-  isLoadingReviews: boolean;
-  isReviewsError: boolean;
 };
 
-const DoctorInformationTabs = ({ doctor, reviews, isLoadingReviews, isReviewsError }: DoctorInformationTabsProps) => (
+const DoctorInformationTabs = ({ doctor, reviews }: DoctorInformationTabsProps) => (
   <section className="rounded-2xl border border-primary-200 bg-white p-5 shadow-[8px_18px_30px_rgba(0,164,244,0.06)] md:p-7">
     <Tabs defaultValue="overview">
       <TabsList className="grid h-12 w-full max-w-md grid-cols-2 bg-primary-50 p-1">
@@ -31,7 +29,7 @@ const DoctorInformationTabs = ({ doctor, reviews, isLoadingReviews, isReviewsErr
         </div>
       </TabsContent>
       <TabsContent value="reviews" className="mt-7">
-        <DoctorReviews doctorId={doctor.id} reviews={reviews} isLoading={isLoadingReviews} isError={isReviewsError} />
+        <DoctorReviews doctorId={doctor.id} />
       </TabsContent>
     </Tabs>
   </section>

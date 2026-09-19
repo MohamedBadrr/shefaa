@@ -1,11 +1,7 @@
 import type { DoctorAvailableSlot } from "@/Features/Auth/@types";
 import { supabase } from "@/lib/supabaseClient";
-
-type AvailableSlotRow = {
-  schedule_id: string;
-  appointment_date: string;
-  time_slot: string;
-};
+import type { AvailableSlotRow } from "../@types/appointments";
+import { mapAvailableSlot } from "../lib/appointmentDates";
 
 export const getDoctorSchedules = async (doctorId: string): Promise<DoctorAvailableSlot[]> => {
   const fromDate = new Date();
@@ -20,9 +16,5 @@ export const getDoctorSchedules = async (doctorId: string): Promise<DoctorAvaila
 
   if (error) throw error;
 
-  return ((data ?? []) as AvailableSlotRow[]).map((slot) => ({
-    id: slot.schedule_id,
-    appointmentDate: slot.appointment_date,
-    timeSlot: slot.time_slot,
-  }));
+  return ((data ?? []) as AvailableSlotRow[]).map(mapAvailableSlot);
 };

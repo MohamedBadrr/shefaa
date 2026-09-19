@@ -1,13 +1,10 @@
 import type { DoctorReview } from "@/Features/Auth/@types";
 import { formatDate } from "@/lib/date";
 import { Star } from "lucide-react";
+import { getInitials } from "../lib/doctorDisplay";
 
 export const ReviewItem = ({ review }: { review: DoctorReview }) => {
-  const initials = review.patientName
-    .split(" ")
-    .map((name) => name[0])
-    .join("")
-    .slice(0, 2);
+  const initials = getInitials(review.patientName);
 
   return (
     <article className="flex gap-4 py-5">

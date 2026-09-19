@@ -1,7 +1,7 @@
 import { supabase } from "@/lib/supabaseClient";
 import type { PublicDoctor } from "@/Features/Auth/@types";
 import type { DepartmentRow, DoctorRow, ProfileRow } from "../@types";
-import { mapDoctor } from "../utils/mapDoctor";
+import { mapDoctors } from "../lib/mapDoctor";
 
 export const getDoctors = async (departmentId?: string): Promise<PublicDoctor[]> => {
   let query = supabase
@@ -33,12 +33,5 @@ export const getDoctors = async (departmentId?: string): Promise<PublicDoctor[]>
   if (profilesError) throw profilesError;
   if (departmentsError) throw departmentsError;
 
-  const profileMap = new Map(
-    (profiles as ProfileRow[]).map((profile) => [profile.id, profile]),
-  );
-  const departmentMap = new Map(
-    (departments as DepartmentRow[]).map((department) => [department.id, department]),
-  );
-
-  return doctors.map((doctor) => mapDoctor(doctor, profileMap.get(doctor.id), departmentMap.get(doctor.department_id)));
+  return mapDoctors(doctors, (profiles ?? []) as ProfileRow[], (departments ?? []) as DepartmentRow[]);
 };

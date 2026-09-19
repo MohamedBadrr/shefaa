@@ -1,50 +1,55 @@
-import SelectField from "@/components/fields/SelectField";
-import { Formik } from "formik";
-import type { DepartmentType } from "@/Features/Auth/@types";
+import { useDepartments } from "@/Features/Auth/hooks/useDepartments";
+import WithLoadingAndError from "@/HOCs/WithLoadingandError";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useDepartmentFilter } from "../hooks/useDepartmentFilter";
+import { getDepartmentFilterOptions } from "../lib/doctorDisplay";
 
-type DoctorsFilterProps = {
-  departments: DepartmentType[];
-  value: string;
-  onChange: (value: string) => void;
-};
+const DoctorsFilter = () => {
+  const { departmentId, setDepartmentId } = useDepartmentFilter();
+  const { data: departments = [], isLoading, isError } = useDepartments();
+  const options = getDepartmentFilterOptions(departments);
+  const selectedOption = options.find(
+    (option) => option.value === (departmentId || "all"),
+  );
 
-const FilterField = ({
-  departments,
-  onChange,
-}: Omit<DoctorsFilterProps, "value">) => {
   return (
-    <SelectField
-      name="departmentId"
-      labelClassName="not-sr-only mb-2 block text-sm font-bold text-neutral-700"
-      placeholder="All departments"
-      options={[
-        { label: "All departments", value: "all" },
-        ...departments.map((department) => ({
-          label: department.name,
-          value: department.id,
-        })),
-      ]}
-      triggerClassName="min-w-56"
-      containerClassName="w-full sm:w-auto"
-      onChange={(selectedValue) =>
-        onChange(selectedValue === "all" ? "" : selectedValue)
-      }
-    />
+    <WithLoadingAndError
+      isLoading={isLoading}
+      isError={isError}
+      errorMessageProps={{
+        message: "Could not load departments.",
+      }}
+    >
+      <Select
+        value={departmentId || "all"}
+        onValueChange={(value) =>
+          setDepartmentId(value === "all" ? "" : (value ?? ""))
+        }
+      >
+        <SelectTrigger
+          aria-label="Filter doctors by department"
+          className="h-12! w-full min-w-56 sm:w-auto"
+        >
+          <SelectValue>
+            {selectedOption?.label ?? "Selected department"}
+          </SelectValue>
+        </SelectTrigger>
+        <SelectContent>
+          {options.map((option) => (
+            <SelectItem key={option.value} value={option.value}>
+              {option.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </WithLoadingAndError>
   );
 };
-
-const DoctorsFilter = ({
-  departments,
-  value,
-  onChange,
-}: DoctorsFilterProps) => (
-  <Formik
-    initialValues={{ departmentId: value || "all" }}
-    enableReinitialize
-    onSubmit={() => undefined}
-  >
-    <FilterField departments={departments} onChange={onChange} />
-  </Formik>
-);
 
 export default DoctorsFilter;

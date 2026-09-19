@@ -1,11 +1,7 @@
 import type { ReviewableAppointment } from "@/Features/Auth/@types";
 import { supabase } from "@/lib/supabaseClient";
-
-type AppointmentRow = {
-  id: string;
-  appointment_date: string;
-  time_slot: string;
-};
+import type { ReviewableAppointmentRow } from "../@types/reviews";
+import { getUnreviewedAppointments } from "../lib/reviews";
 
 export const getReviewableAppointments = async (
   doctorId: string,
@@ -21,7 +17,7 @@ export const getReviewableAppointments = async (
 
   if (error) throw error;
 
-  const appointments = (data ?? []) as AppointmentRow[];
+  const appointments = (data ?? []) as ReviewableAppointmentRow[];
   if (appointments.length === 0) return [];
 
   const { data: reviews, error: reviewsError } = await supabase
@@ -31,12 +27,8 @@ export const getReviewableAppointments = async (
 
   if (reviewsError) throw reviewsError;
 
-  const reviewedIds = new Set((reviews ?? []).map((review) => review.appointment_id));
-
-  return appointments
-    .filter((appointment) => !reviewedIds.has(appointment.id))
-    .map((appointment) => ({
-      id: appointment.id,
-      label: `${new Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(new Date(`${appointment.appointment_date}T00:00:00`))} at ${appointment.time_slot.slice(0, 5)}`,
-    }));
+  return getUnreviewedAppointments(
+    appointments,
+    (reviews ?? []).map((review) => review.appointment_id),
+  );
 };
