@@ -57,7 +57,7 @@ const SelectField = ({
         <SelectTrigger
           id={name}
           className={cn(
-            "h-12! w-full bg-white px-5 text-[13px] font-semibold text-neutral-700",
+            "h-12! w-full! bg-white px-5 text-[13px] font-semibold text-neutral-700",
             meta.touched && meta.error
               ? "border-red-500 focus-visible:border-red-500"
               : "border-primary-300 focus-visible:border-primary-500",
