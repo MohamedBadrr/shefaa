@@ -1,12 +1,7 @@
 import logo from "@/assets/logo.png";
 import DoctorRegisterForm from "@/Features/Auth/components/DoctorRegisterForm";
 import PatientRegisterForm from "@/Features/Auth/components/PatientRegisterForm";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router";
 
