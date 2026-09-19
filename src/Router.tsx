@@ -19,6 +19,7 @@ import PatientAppointments from "./pages/PatientAppointments";
 import PatientProfile from "./pages/PatientProfile";
 import AdminLayout from "./Layouts/AdminLayout";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminProfile from "./pages/AdminProfile";
 
 export const router = createBrowserRouter([
   {
@@ -103,6 +104,10 @@ export const router = createBrowserRouter([
           {
             path: "/admin/dashboard",
             element: <AdminDashboard />,
+          },
+          {
+            path: "/admin/profile",
+            element: <AdminProfile />,
           },
         ],
       },

@@ -6,8 +6,8 @@ import { useState } from "react";
 import { useAuthStore } from "@/store/AuthStore";
 import { useLogout } from "@/Features/Auth/hooks/useLogout";
 import { getHeaderLinks } from "@/lib/navigation";
-import PatientAccountMenu from "./PatientAccountMenu";
-import DoctorAccountMenu from "./DoctorAccountMenu";
+import AccountMenu from "./AccountMenu";
+
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -54,43 +54,14 @@ const Header = () => {
                 Join Us
               </Button>
             </Link>
-          ) : user?.role === "patient" ? (
-            <div className="flex items-center gap-3">
-              <PatientAccountMenu />
-              <Button
-                onClick={() => mutateLogout()}
-                variant="gradient"
-                loading={isPendingLogout}
-                disabled={isPendingLogout}
-                size="lg"
-              >
-                Logout
-              </Button>
-            </div>
-          ) : user?.role === "doctor" ? (
-            <div className="flex items-center gap-3">
-              <DoctorAccountMenu />
-              <Button
-                onClick={() => mutateLogout()}
-                variant="gradient"
-                loading={isPendingLogout}
-                disabled={isPendingLogout}
-                size="lg"
-              >
-                Logout
-              </Button>
-            </div>
           ) : (
-            <Button
-              onClick={() => mutateLogout()}
-              variant={"gradient"}
-              className={"w-full!"}
-              loading={isPendingLogout}
-              disabled={isPendingLogout}
-              size={"lg"}
-            >
-              Logout
-            </Button>
+            <div className="flex items-center gap-3">
+              <AccountMenu />
+              <Button onClick={() => mutateLogout()} variant="gradient"
+                loading={isPendingLogout} disabled={isPendingLogout} size="lg">
+                Logout
+              </Button>
+            </div>
           )}
         </div>
 
@@ -109,7 +80,7 @@ const Header = () => {
       {openMenu && (
         <div
           className={`absolute w-full flex items-start flex-col gap-4 px-6 py-5 bg-secondary 
-        transition-all duration-300 ease-out  z-100
+        transition-all duration-300 ease-out  z-40
         ${openMenu ? "opactit-100 translate-y-0 visible" : "opacity-0 -translate-y-3 invisible pointer-events-none"}
         `}
         >
@@ -136,45 +107,14 @@ const Header = () => {
                   Join Us
                 </Button>
               </Link>
-            ) : user?.role === "patient" ? (
-              <div className="flex flex-col justify-center w-full items-center gap-3">
-                <PatientAccountMenu />
-                <Button
-                  onClick={() => mutateLogout()}
-                  variant="gradient"
-                  className="w-full!"
-                  loading={isPendingLogout}
-                  disabled={isPendingLogout}
-                  size="lg"
-                >
-                  Logout
-                </Button>
-              </div>
-            ) : user?.role === "doctor" ? (
-              <div className="flex flex-col justify-center w-full items-center gap-3">
-                <DoctorAccountMenu />
-                <Button
-                  onClick={() => mutateLogout()}
-                  variant="gradient"
-                  className="w-full!"
-                  loading={isPendingLogout}
-                  disabled={isPendingLogout}
-                  size="lg"
-                >
-                  Logout
-                </Button>
-              </div>
             ) : (
-              <Button
-                onClick={() => mutateLogout()}
-                variant={"gradient"}
-                className={"w-full!"}
-                loading={isPendingLogout}
-                disabled={isPendingLogout}
-                size={"lg"}
-              >
-                Logout
-              </Button>
+              <div className="flex w-full items-center gap-3">
+                <AccountMenu onNavigate={() => setOpenMenu(false)} />
+                <Button onClick={() => mutateLogout()} variant="gradient" className="flex-1"
+                  loading={isPendingLogout} disabled={isPendingLogout} size="lg">
+                  Logout
+                </Button>
+              </div>
             )}
           </div>
         </div>
@@ -184,3 +124,5 @@ const Header = () => {
 };
 
 export default Header;
+
+
