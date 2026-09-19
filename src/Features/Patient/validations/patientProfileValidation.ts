@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import { isProfilePhotoSizeValid, isProfilePhotoTypeValid } from "../lib/profilePhoto";
 
 export const patientProfileValidationSchema = Yup.object({
   firstName: Yup.string()
@@ -22,8 +23,8 @@ export const patientProfileValidationSchema = Yup.object({
     .trim()
     .min(5, "Address is too short")
     .required("Address is required"),
-  imageFile: Yup.mixed()
+  imageFile: Yup.mixed<File>()
     .nullable()
-    .test("file-size", "Image must be smaller than 5 MB", (file) => !file || (file as File).size <= 5 * 1024 * 1024)
-    .test("file-type", "Choose a valid image file", (file) => !file || (file as File).type.startsWith("image/")),
+    .test("file-size", "Image must be smaller than 5 MB", isProfilePhotoSizeValid)
+    .test("file-type", "Choose a valid image file", isProfilePhotoTypeValid),
 });

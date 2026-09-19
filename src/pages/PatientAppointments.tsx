@@ -35,8 +35,6 @@ const AppointmentResults = ({
   );
 };
 
-const AppointmentResultsWithState = WithLoadingAndError(AppointmentResults);
-
 const PatientAppointments = () => {
   const {
     data: appointments = [],
@@ -91,13 +89,13 @@ const PatientAppointments = () => {
             </Select>
           </div>
         </header>
-        <AppointmentResultsWithState
-          appointments={filteredAppointments}
+        <WithLoadingAndError
           isLoading={isLoading}
           isError={isError}
-          loadingLabel="Loading appointments"
-          errorMessage="We could not load your appointments right now."
-        />
+          errorMessageProps={{ message: "We could not load your appointments right now." }}
+        >
+          <AppointmentResults appointments={filteredAppointments} />
+        </WithLoadingAndError>
         {!isLoading && !isError && appointments.length === 0 && (
           <div className="mt-8 rounded-2xl border border-primary-200 bg-white py-20 text-center text-sm text-neutral-500">
             You do not have any appointments yet.

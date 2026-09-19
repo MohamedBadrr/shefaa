@@ -28,14 +28,7 @@ export type PatientAppointment = {
   feeAmount: number;
 };
 
-export type PatientProfileValues = {
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  age: string;
-  address: string;
-  imageFile: File | null;
-};
+export type { PatientProfileValues } from "@/Features/Patient/@types/patientProfile";
 
 export type PublicDoctor = {
   id: string;

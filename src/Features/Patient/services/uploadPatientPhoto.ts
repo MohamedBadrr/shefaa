@@ -1,11 +1,11 @@
 import { supabase } from "@/lib/supabaseClient";
 
-const AVATAR_BUCKET = "avatars";
+import { avatarBucket } from "../constants/patientProfile";
+import { getPatientPhotoPath } from "../lib/profilePhoto";
 
 export const uploadPatientPhoto = async (patientId: string, file: File) => {
-  const extension = file.name.split(".").pop()?.toLowerCase() || "jpg";
-  const path = `${patientId}/${crypto.randomUUID()}.${extension}`;
-  const { error } = await supabase.storage.from(AVATAR_BUCKET).upload(path, file, {
+  const path = getPatientPhotoPath(patientId, file.name);
+  const { error } = await supabase.storage.from(avatarBucket).upload(path, file, {
     cacheControl: "3600",
     contentType: file.type,
     upsert: false,
@@ -17,5 +17,5 @@ export const uploadPatientPhoto = async (patientId: string, file: File) => {
     }
     throw error;
   }
-  return supabase.storage.from(AVATAR_BUCKET).getPublicUrl(path).data.publicUrl;
+  return supabase.storage.from(avatarBucket).getPublicUrl(path).data.publicUrl;
 };
