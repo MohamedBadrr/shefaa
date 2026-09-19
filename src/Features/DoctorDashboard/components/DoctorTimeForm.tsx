@@ -8,8 +8,7 @@ import { doctorTimeValidationSchema } from "../validations/doctorTimeValidation"
 import { useAddDoctorTime } from "../hooks/useAddDoctorTime";
 import type { DoctorTimeValues } from "../@types/doctorTimes";
 
-const labelClassName =
-  "not-sr-only mb-2 block text-xs font-extrabold text-neutral-700";
+import { doctorLabelClassName } from "../constants/doctorForms";
 
 const DoctorTimeForm = () => {
   const addTimeMutation = useAddDoctorTime();
@@ -32,14 +31,14 @@ const DoctorTimeForm = () => {
             label="Day"
             placeholder="Choose day"
             options={weekDayOptions}
-            labelClassName={labelClassName}
+            labelClassName={doctorLabelClassName}
           />
           <InputField
             name="timeSlot"
             type="time"
             label="Time"
             icon={<Clock3 size={18} />}
-            labelClassName={labelClassName}
+            labelClassName={doctorLabelClassName}
           />
           <Button
             type="submit"

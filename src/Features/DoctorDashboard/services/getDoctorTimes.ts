@@ -1,22 +1,6 @@
 import { supabase } from "@/lib/supabaseClient";
-import type { DoctorTime } from "../@types/doctorTimes";
-import { weekDayOrder } from "../constants/doctorTimes";
-
-type DoctorTimeRow = {
-  id: string;
-  day: string;
-  time_slot: string;
-};
-
-const sortDoctorTimes = (times: DoctorTime[]) =>
-  [...times].sort((first, second) => {
-    const dayDifference =
-      weekDayOrder.indexOf(first.day) - weekDayOrder.indexOf(second.day);
-
-    if (dayDifference !== 0) return dayDifference;
-
-    return first.timeSlot.localeCompare(second.timeSlot);
-  });
+import type { DoctorTime, DoctorTimeRow } from "../@types/doctorTimes";
+import { mapDoctorTime, sortDoctorTimes } from "../lib/doctorTimes";
 
 export const getDoctorTimes = async (doctorId: string): Promise<DoctorTime[]> => {
   const { data, error } = await supabase
@@ -26,12 +10,6 @@ export const getDoctorTimes = async (doctorId: string): Promise<DoctorTime[]> =>
     .eq("is_active", true);
 
   if (error) throw error;
-
-  const times = ((data ?? []) as DoctorTimeRow[]).map((time) => ({
-    id: time.id,
-    day: time.day,
-    timeSlot: time.time_slot,
-  }));
-
+  const times = ((data ?? []) as DoctorTimeRow[]).map(mapDoctorTime);
   return sortDoctorTimes(times);
 };

@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { getCurrentAuthUser } from "@/Features/Auth/services/getCurrentAuthUser";
 import { useAuthStore } from "@/store/AuthStore";
-import type { DoctorProfileValues } from "@/Features/Auth/@types";
+import type { DoctorProfileValues } from "../@types/doctorProfile";
 import { updateDoctorProfile } from "../services/updateDoctorProfile";
 
 export const useUpdateDoctorProfile = () => {
