@@ -14,13 +14,16 @@ const DoctorUpdateForm = ({ doctor }: { doctor: AdminDoctor }) => {
       initialValues={getDoctorUpdateValues(doctor)}
       enableReinitialize
       validationSchema={adminDoctorUpdateValidationSchema}
-      onSubmit={(values) => updateDoctor.mutate({ doctorId: doctor.id, values })}
+      onSubmit={(values) =>
+        updateDoctor.mutate({ doctorId: doctor.id, values })
+      }
     >
       <Form className="space-y-2">
         <DoctorFormFields />
         <Button
           type="submit"
           variant="gradient"
+          className="w-full"
           loading={updateDoctor.isPending}
           disabled={updateDoctor.isPending}
         >

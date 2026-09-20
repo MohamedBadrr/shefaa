@@ -19,6 +19,7 @@ const DoctorCreateForm = () => {
         <Button
           type="submit"
           variant="gradient"
+          className="w-full"
           loading={createDoctor.isPending}
           disabled={createDoctor.isPending}
         >

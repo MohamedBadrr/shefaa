@@ -6,6 +6,7 @@ const DoctorDetails = ({ doctor }: { doctor: AdminDoctor }) => (
   <AdminDetailsGrid
     items={[
       { label: "Email", value: doctor.email },
+      { label: "Phone number", value: doctor.phoneNumber },
       { label: "Department", value: doctor.departmentName },
       { label: "Degree", value: doctor.degree },
       { label: "Fee", value: `$${doctor.fee}` },

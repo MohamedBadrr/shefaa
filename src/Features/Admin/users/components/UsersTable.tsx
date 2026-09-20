@@ -18,7 +18,7 @@ const UsersTable = ({ users }: { users: AdminUser[] }) => (
         <TableRow>
           <TableHead>User</TableHead>
           <TableHead>Role</TableHead>
-          <TableHead>Phone</TableHead>
+          <TableHead>Phone number</TableHead>
           <TableHead>Address</TableHead>
           <TableHead className="text-right">Actions</TableHead>
         </TableRow>
@@ -28,7 +28,7 @@ const UsersTable = ({ users }: { users: AdminUser[] }) => (
           <TableRow key={user.id} className="border-primary-100 hover:bg-primary-50/40 [&_td]:p-4">
             <TableCell><UserIdentity user={user} /></TableCell>
             <TableCell><UserRoleBadge role={user.role} /></TableCell>
-            <TableCell>{user.phoneNumber || "N/A"}</TableCell>
+            <TableCell className="tabular-nums"><span dir="ltr">{user.phoneNumber || "N/A"}</span></TableCell>
             <TableCell className="max-w-sm whitespace-normal">{user.address || "N/A"}</TableCell>
             <TableCell className="text-right"><UserActions user={user} /></TableCell>
           </TableRow>

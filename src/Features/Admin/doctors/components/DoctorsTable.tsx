@@ -17,6 +17,7 @@ const DoctorsTable = ({ doctors }: { doctors: AdminDoctor[] }) => (
       <TableHeader className="bg-primary-50 [&_th]:px-4 [&_th]:py-3 [&_th]:text-primary-700">
         <TableRow>
           <TableHead>Doctor</TableHead>
+          <TableHead>Phone number</TableHead>
           <TableHead>Department</TableHead>
           <TableHead>Fee</TableHead>
           <TableHead>Approval</TableHead>
@@ -30,6 +31,7 @@ const DoctorsTable = ({ doctors }: { doctors: AdminDoctor[] }) => (
             <TableCell>
               <DoctorIdentity doctor={doctor} />
             </TableCell>
+            <TableCell className="tabular-nums"><span dir="ltr">{doctor.phoneNumber || "N/A"}</span></TableCell>
             <TableCell>{doctor.departmentName}</TableCell>
             <TableCell>${doctor.fee}</TableCell>
             <TableCell>
